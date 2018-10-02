@@ -21,8 +21,9 @@ namespace WebHotel.Models
 
         [DataType(DataType.Currency)]
         public decimal Cost { get; set; }
-        public ICollection<Room> TheRoom { get; set; }
-        public ICollection<Customer> TheCustomer { get; set; }
+
+        public Room TheRoom { get; set; }
+        public Customer TheCustomer { get; set; }
 
     }
 }
