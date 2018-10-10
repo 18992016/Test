@@ -13,6 +13,7 @@ namespace WebHotel.Models
         public String level { get; set; }
         public int bedCount { get; set; }
         public float price { get; set; }
+        //test comment
         public ICollection<Booking> theBookings { get; set; }
     }
 }
