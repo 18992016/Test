@@ -1,32 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebHotel.Models
 {
     public class Booking
     {
-        [Key]
-        public int bookingId { get; set; }
-
-        public int roomId { get; set; }
-
-        public string customerEmail { get; set; }
+        public int ID { get; set; }
+        public int RoomID { get; set; }
+        public string CustomerEmail { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime checkIn { get; set; }
+        public DateTime CheckIn { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime checkOut { get; set; }
+        public DateTime CheckOut { get; set; }
 
         [DataType(DataType.Currency)]
-        public float cost { get; set; }
+        public decimal Cost { get; set; }
 
-        public Room theRoom { get; set; }
+        public Room TheRoom { get; set; }
+        public Customer TheCustomer { get; set; }
 
-        public Customer theCustomer { get; set; }
     }
 }
-    

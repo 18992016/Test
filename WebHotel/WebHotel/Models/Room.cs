@@ -1,26 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebHotel.Models
 {
     public class Room
     {
-        [Key, Required]
-        public int roomId { get; set; }
+        public int ID { get; set; }
 
-        [RegularExpression("^[G,g,1,2,3]{1}$")]
-        public String level { get; set; }
+        [Required]
+        [RegularExpression(@"[G123]{1}")]
+        public string Level { get; set; }
 
-        [RegularExpression("^[1-3]{1}$")]
-        public int bedCount { get; set; }
+        [RegularExpression(@"[123]{1}")]
+        public int BedCount { get; set; }
 
-        [RegularExpression("^[$]([5-9][0-9]|[1,2][0-9]{2}|300)$")]
-        public float price { get; set; }
+        [Range(50, 300)]
+        public decimal Price { get; set; }
 
-        //test comment
-        public ICollection<Booking> theBookings { get; set; }
+        public ICollection<Booking> TheBookings { get; set; }
+
+
     }
 }

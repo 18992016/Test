@@ -1,25 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace WebHotel.Models
 {
     public class Customer
     {
         [Key, Required]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [RegularExpression("^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$")]
-        public string email { get; set; }
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
-        public String sName { get; set; }
+        [Required]
+        [RegularExpression(@"[A-Za-z - ']{2,20}$")]
+        [Display(Name = "Surname")]
+        public string Surname { get; set; }
 
-        public String fName { get; set; }
+        [Required]
+        [RegularExpression(@"[A-Za-z - ']{2,20}$")]
+        [Display(Name = "Given Name")]
+        public string GivenName { get; set; }
 
-        public String postCode { get; set; }
+        [Required]
+        [RegularExpression(@"[0-9]{4}$")]
+        [Display(Name = "Postcode")]
+        public string Postcode { get; set; }
 
-        public ICollection<Booking> theBookings { get; set; }
+        public ICollection<Booking> TheBookings { get; set; }
     }
 }
