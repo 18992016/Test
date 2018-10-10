@@ -24,9 +24,9 @@ namespace WebHotel.Models
         [DataType(DataType.Currency)]
         public float cost { get; set; }
 
-        public ICollection<Room> theRoom { get; set; }
+        public Room theRoom { get; set; }
 
-        public ICollection<Customer> theCustomer { get; set; }
+        public Customer theCustomer { get; set; }
     }
 }
     
