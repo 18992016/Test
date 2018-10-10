@@ -59,17 +59,25 @@ namespace WebHotel.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,RoomID,CustomerEmail,CheckIn,CheckOut,Cost")] Booking booking)
+        public async Task<IActionResult> Create([Bind("ID,RoomID,CustomerEmail,CheckIn,CheckOut,Cost")] BookRoom bookRoom)
         {
+            var booking = new Booking
+            {
+                RoomID = bookRoom.RoomID,
+                CheckIn = bookRoom.CheckIn,
+                CheckOut = bookRoom.CheckOut
+            };
+
             if (ModelState.IsValid)
             {
-                _context.Add(booking);
+
+                _context.Add(bookRoom);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerEmail"] = new SelectList(_context.Customer, "Email", "Email", booking.CustomerEmail);
-            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "Level", booking.RoomID);
-            return View(booking);
+            ViewData["CustomerEmail"] = new SelectList(_context.Customer, "Email", "Email", bookRoom.CustomerEmail);
+            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "Level", bookRoom.RoomID);
+            return View(bookRoom);
         }
 
         // GET: Bookings/Edit/5
