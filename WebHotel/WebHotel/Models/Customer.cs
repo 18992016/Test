@@ -12,9 +12,13 @@ namespace WebHotel.Models
         [Key, Required]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string email { get; set; }
+
         public String sName { get; set; }
+
         public String fName { get; set; }
+
         public String postCode { get; set; }
+
         public ICollection<Booking> theBookings { get; set; }
     }
 }
