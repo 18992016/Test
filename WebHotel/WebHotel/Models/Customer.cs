@@ -11,6 +11,7 @@ namespace WebHotel.Models
     {
         [Key, Required]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [RegularExpression("^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$")]
         public string email { get; set; }
 
         public String sName { get; set; }

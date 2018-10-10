@@ -17,7 +17,7 @@ namespace WebHotel.Models
         [RegularExpression("^[1-3]{1}$")]
         public int bedCount { get; set; }
 
-        [RegularExpression("^$5[0-9]$")]
+        [RegularExpression("^[$]([5-9][0-9]|[1,2][0-9]{2}|300)$")]
         public float price { get; set; }
 
         //test comment
