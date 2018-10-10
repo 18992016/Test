@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebHotel.Data;
 using WebHotel.Models;
+using WebHotel.Models.ManageViewModels;
 
 namespace WebHotel.Controllers
 {
@@ -51,6 +52,23 @@ namespace WebHotel.Controllers
         {
             ViewData["CustomerEmail"] = new SelectList(_context.Customer, "Email", "Email");
             ViewData["RoomID"] = new SelectList(_context.Room, "ID", "Level");
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(ManageBookingViewModel ordersPage)
+        {
+            //var localbooking = new Booking;
+
+            {
+              //  ordersPage.RoomID = Booking.RoomID; 
+              //  CustomerEmail = ordersPage.Email;
+
+              //  b.CheckIn = ordersPage.CheckIn;
+              //  CheckOut = ordersPage.CheckOut;
+             //   Cost = ordersPage.Cost;
+
+            }
             return View();
         }
 

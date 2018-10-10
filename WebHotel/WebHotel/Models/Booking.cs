@@ -10,9 +10,11 @@ namespace WebHotel.Models
     public class Booking
     {
         public int ID { get; set; }
-        public int RoomID { get; set; }
-        public string CustomerEmail { get; set; }
 
+        public int RoomID { get; set; }
+
+        public string CustomerEmail { get; set; }
+        
         [DataType(DataType.Date)]
         public DateTime CheckIn { get; set; }
 
