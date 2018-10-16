@@ -1,8 +1,8 @@
-﻿@model IEnumerable<WebHotel.Models.Booking>
+﻿@model IEnumerable<WebHotel.Models.ManageBookingViewModel>
  
 
     @{
-        ViewData["Title"] = "Index";
+        ViewData["Title"] = "ManageIndex";
     }
 
     <h2>Index</h2>
@@ -14,6 +14,9 @@
         <thead>
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.RoomID)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.CheckIn)
                 </th>
                 <th>
@@ -22,12 +25,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Cost)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TheCustomer)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TheRoom)
-                </th>
+     
                 <th></th>
             </tr>
         </thead>
@@ -43,12 +41,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Cost)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TheCustomer.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TheRoom.Level)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

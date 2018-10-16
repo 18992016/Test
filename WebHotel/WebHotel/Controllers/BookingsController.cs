@@ -51,24 +51,23 @@ namespace WebHotel.Controllers
         public IActionResult Create()
         {
             ViewData["CustomerEmail"] = new SelectList(_context.Customer, "Email", "Email");
-            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "Level");
+            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID");
             return View();
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ManageBookingViewModel ordersPage)
+        public async Task<IActionResult> ManageIndex(ManageBookingViewModel ordersPage)
         {
-            //var localbooking = new Booking;
+            var localbooking = new Booking
 
             {
-              //  ordersPage.RoomID = Booking.RoomID; 
-              //  CustomerEmail = ordersPage.Email;
+                RoomID = ordersPage.RoomID,
+                CheckIn = ordersPage.CheckIn,
+                CheckOut = ordersPage.CheckOut,
+                Cost = ordersPage.Cost
+            };
+           // using WebHotel.Models.ManageBookingViewModel;
 
-              //  b.CheckIn = ordersPage.CheckIn;
-              //  CheckOut = ordersPage.CheckOut;
-             //   Cost = ordersPage.Cost;
-
-            }
             return View();
         }
 
@@ -86,7 +85,7 @@ namespace WebHotel.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerEmail"] = new SelectList(_context.Customer, "Email", "Email", booking.CustomerEmail);
-            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "Level", booking.RoomID);
+            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID", booking.RoomID);
             return View(booking);
         }
 
@@ -141,7 +140,7 @@ namespace WebHotel.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerEmail"] = new SelectList(_context.Customer, "Email", "Email", booking.CustomerEmail);
-            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "Level", booking.RoomID);
+            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID", booking.RoomID);
             return View(booking);
         }
 

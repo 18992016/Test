@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 namespace WebHotel.Models
 {
     public class ManageBookingViewModel
-    {   
+    {
+        [Key]
+        public int ID { get; set; }
+
         [Range(1,16), Display(Name ="Room ID")]
         public int RoomID { get; set; }
 
