@@ -103,21 +103,21 @@ namespace WebHotel.Data.Migrations
                 table: "Booking",
                 column: "RoomID");
 
-            /* migrationBuilder.AddForeignKey(
+             migrationBuilder.AddForeignKey(
                 name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                 table: "AspNetUserTokens",
                 column: "UserId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade); */
+                onDelete: ReferentialAction.Cascade); 
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            /*
+            
             migrationBuilder.DropForeignKey(
                 name: "FK_AspNetUserTokens_AspNetUsers_UserId",
-                table: "AspNetUserTokens"); */
+                table: "AspNetUserTokens"); 
 
             migrationBuilder.DropTable(
                 name: "Booking");
