@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -53,22 +54,22 @@ namespace WebHotel.Controllers
             ViewData["CustomerEmail"] = new SelectList(_context.Customer, "Email", "Email");
             ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID");
             return View();
-        }
+        } 
 
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> ManageIndex(ManageBookingViewModel ordersPage)
+        public async Task<IActionResult> ManageIndex()
         {
-            var localbooking = new Booking
+//            var localbooking = new Booking
 
-            {
-                RoomID = ordersPage.RoomID,
-                CheckIn = ordersPage.CheckIn,
-                CheckOut = ordersPage.CheckOut,
-                Cost = ordersPage.Cost
-            };
-           // using WebHotel.Models.ManageBookingViewModel;
+           // {
+                //RoomID = ordersPage.RoomID,
+                //CheckIn = ordersPage.CheckIn,
+               // CheckOut = ordersPage.CheckOut,
+             //   Cost = ordersPage.Cost
+           // };
+            // using WebHotel.Models.ManageBookingViewModel;
 
-            return View();
+            var applicationDbContext = _context.Booking.Include(b => b.TheCustomer).Include(b => b.TheRoom);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // POST: Bookings/Create
@@ -83,12 +84,13 @@ namespace WebHotel.Controllers
                 _context.Add(booking);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
+            }   
             ViewData["CustomerEmail"] = new SelectList(_context.Customer, "Email", "Email", booking.CustomerEmail);
             ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID", booking.RoomID);
             return View(booking);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Bookings/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -103,7 +105,7 @@ namespace WebHotel.Controllers
                 return NotFound();
             }
             ViewData["CustomerEmail"] = new SelectList(_context.Customer, "Email", "Email", booking.CustomerEmail);
-            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "Level", booking.RoomID);
+            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID", booking.RoomID);
             return View(booking);
         }
 
