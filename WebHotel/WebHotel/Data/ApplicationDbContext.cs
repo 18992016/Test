@@ -29,7 +29,5 @@ namespace WebHotel.Data
         public DbSet<WebHotel.Models.Customer> Customer { get; set; }
 
         public DbSet<WebHotel.Models.Booking> Booking { get; set; }
-
-        public DbSet<WebHotel.Models.ManageBookingViewModel> ShowBookingsViewModel { get; set; }
     }
 }

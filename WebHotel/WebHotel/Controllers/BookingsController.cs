@@ -54,24 +54,9 @@ namespace WebHotel.Controllers
             ViewData["CustomerEmail"] = new SelectList(_context.Customer, "Email", "Email");
             ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID");
             return View();
-        } 
-
-        public async Task<IActionResult> ManageIndex()
-        {
-//            var localbooking = new Booking
-
-           // {
-                //RoomID = ordersPage.RoomID,
-                //CheckIn = ordersPage.CheckIn,
-               // CheckOut = ordersPage.CheckOut,
-             //   Cost = ordersPage.Cost
-           // };
-            // using WebHotel.Models.ManageBookingViewModel;
-
-            var applicationDbContext = _context.Booking.Include(b => b.TheCustomer).Include(b => b.TheRoom);
-            return View(await applicationDbContext.ToListAsync());
         }
-
+        // GET: Bookings/AdminCreate
+        
         // POST: Bookings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -88,6 +73,19 @@ namespace WebHotel.Controllers
             ViewData["CustomerEmail"] = new SelectList(_context.Customer, "Email", "Email", booking.CustomerEmail);
             ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID", booking.RoomID);
             return View(booking);
+        }
+        [Authorize(Roles = "Admin")]
+        public IActionResult ManageCreate()
+        {
+            ViewData["CustomerEmail"] = new SelectList(_context.Customer, "Email", "Email");
+            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID");
+            return View();
+        }
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ManageIndex()
+        {       
+            var applicationDbContext = _context.Booking.Include(b => b.TheCustomer).Include(b => b.TheRoom);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         [Authorize(Roles = "Admin")]
