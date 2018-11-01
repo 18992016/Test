@@ -1,0 +1,45 @@
+﻿@model WebHotel.Models.BookRoom
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BookingCompleted</title>
+</head>
+<body>
+
+<div>
+    <h4>BookRoom</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckIn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CheckIn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckOut)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CheckOut)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TheCustomer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TheCustomer.Email)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.RoomID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</body>
+</html>
